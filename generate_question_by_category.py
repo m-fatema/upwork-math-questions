@@ -6,6 +6,7 @@ from question_by_category.category_jlm import CategoryJLMQuestions
 from question_by_category.category_nop import CategoryNOPQuestions
 from question_by_category.category_qrst import CategoryQRSTQuestions
 from question_by_category.category_uvw import CategoryUVWQuestions
+from question_by_category.category_yzaa import CategoryYZAAQuestions
 
 
 class GenerateQuestionByCategory:
@@ -25,6 +26,10 @@ class GenerateQuestionByCategory:
         self.category_nop = CategoryNOPQuestions()
         self.category_qrst = CategoryQRSTQuestions()
         self.category_uvw = CategoryUVWQuestions(self.category_qrst)
+        self.category_yzaa = CategoryYZAAQuestions()
+
+    def generate_category_y_question(self) -> dict:
+        return self.category_yzaa.generate_category_y_question()
 
     def generate_category_w_question(self) -> dict:
         return self.category_uvw.generate_category_w_question()

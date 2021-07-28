@@ -1,7 +1,8 @@
 import random
 import numpy
 
-class CategoryEFHQuestions():
+
+class CategoryEFHQuestions:
     def __init__(self):
         pass
 

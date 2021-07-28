@@ -1,7 +1,7 @@
 import random
 
 
-class CategoryNOPQuestions():
+class CategoryNOPQuestions:
     def __init__(self):
         pass
 

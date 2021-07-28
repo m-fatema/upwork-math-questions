@@ -1,7 +1,7 @@
 import random
 
 
-class CategoryQRSTQuestions():
+class CategoryQRSTQuestions:
     def __init__(self):
         pass
 

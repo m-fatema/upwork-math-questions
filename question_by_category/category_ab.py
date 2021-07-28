@@ -1,6 +1,7 @@
 import random
 
-class CategoryABQuestions():
+
+class CategoryABQuestions:
     def __init__(self):
         pass
 

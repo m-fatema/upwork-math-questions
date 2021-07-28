@@ -1,7 +1,8 @@
 import random
 from question_by_category.category_qrst import CategoryQRSTQuestions
 
-class CategoryUVWQuestions():
+
+class CategoryUVWQuestions:
 
     def __init__(self, category_qrst: CategoryQRSTQuestions):
         self.category_qrst = category_qrst

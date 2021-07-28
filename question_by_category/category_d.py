@@ -1,6 +1,6 @@
 import random
 
-class CategoryDQuestions():
+class CategoryDQuestions:
 
     def __init__(self):
         pass

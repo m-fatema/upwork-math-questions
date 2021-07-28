@@ -1,6 +1,6 @@
 import random
 
-class CategoryJLMQuestions():
+class CategoryJLMQuestions:
     def __init__(self):
         pass
 
