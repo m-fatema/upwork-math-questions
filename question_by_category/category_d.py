@@ -1,5 +1,6 @@
 import random
 
+
 class CategoryDQuestions:
 
     def __init__(self):
