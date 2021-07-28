@@ -5,44 +5,56 @@ from question_by_category.category_efh import CategoryEFHQuestions
 from question_by_category.category_jlm import CategoryJLMQuestions
 from question_by_category.category_nop import CategoryNOPQuestions
 from question_by_category.category_qrst import CategoryQRSTQuestions
+from question_by_category.category_uvw import CategoryUVWQuestions
+
+
 class GenerateQuestionByCategory:
 
     def __init__(self):
-        self.config1 = {
+        self.config = {
             "n_roots_range": (2, 3),
             "root_range": (1, 10),
             "root_square_ratio": 0.1,
             "coefficient_range": (1, 20),
             "neg_coefficient_ration": 0.1,
         }
-        pass
+        self.category_ab = CategoryABQuestions()
+        self.category_d = CategoryDQuestions()
+        self.category_efh = CategoryEFHQuestions()
+        self.category_jlm = CategoryJLMQuestions()
+        self.category_nop = CategoryNOPQuestions()
+        self.category_qrst = CategoryQRSTQuestions()
+        self.category_uvw = CategoryUVWQuestions()
+
+    def generate_category_u_question(self) -> dict:
+        return self.category_uvw.generate_category_u_question()
 
     def generate_category_t_question(self) -> dict:
-        return CategoryQRSTQuestions().generate_category_t_question()
+        return self.category_qrst.generate_category_t_question()
 
     def generate_category_s_question(self) -> dict:
-        return CategoryQRSTQuestions().generate_category_s_question()
+        return self.category_qrst.generate_category_s_question()
 
     def generate_category_r_question(self) -> dict:
-        return CategoryQRSTQuestions().generate_category_r_question()
+        return self.category_qrst.generate_category_r_question()
 
     def generate_category_q_question(self) -> dict:
-        return CategoryQRSTQuestions().generate_category_q_question()
+        return self.category_qrst.generate_category_q_question()
 
     def generate_category_p_question(self) -> dict:
-        return CategoryNOPQuestions().generate_category_p_question()
+        return self.category_nop.generate_category_p_question()
 
     def generate_category_o_question(self) -> dict:
-        return CategoryNOPQuestions().generate_category_o_question()
+        return self.category_nop.generate_category_o_question()
 
     def generate_category_n_question(self) -> dict:
-        return CategoryNOPQuestions().generate_category_n_question()
+        return self.category_nop.generate_category_n_question()
 
     def generate_category_m_question(self):
-        return CategoryJLMQuestions().generate_category_m_question()
+        return self.category_jlm.generate_category_m_question()
 
     def generate_category_l_question(self):
-        return CategoryJLMQuestions().generate_category_l_question()
+        return self.category_jlm.generate_category_l_question()
 
     def generate_category_k_question(self):
         return {'question': 'Welcher Rechenweg sinnvoller ist, entscheidet man am besten, ' +
@@ -52,38 +64,38 @@ class GenerateQuestionByCategory:
                 'wrong_1': 'Quotienten'}
 
     def generate_category_j_question(self):
-        return CategoryJLMQuestions().generate_category_j_question()
+        return self.category_jlm.generate_category_j_question()
 
     def generate_category_i_question(self):
         return self.generate_category_a_question()
 
     def generate_category_h_question(self):
         roots, _ = self._generate_roots()
-        res = CategoryEFHQuestions().generate_category_h_question(roots)
+        res = self.category_efh.generate_category_h_question(roots)
         return res
 
     def generate_category_f_question(self):
         roots, eq_var = self._generate_roots()
-        res = CategoryEFHQuestions().generate_category_e_question(roots, eq_var)
+        res = self.category_efh.generate_category_e_question(roots, eq_var)
         return res
 
     def generate_category_e_question(self):
         roots, eq_var = self._generate_roots()
-        res = CategoryEFHQuestions().generate_category_e_question(roots, eq_var)
+        res = self.category_efh.generate_category_e_question(roots, eq_var)
         return res
 
     def generate_category_d_question(self):
-        n = self.randint(self.config1["n_roots_range"])
+        n = self._randint(self.config["n_roots_range"])
         equation_by_roots = list()
         answer_type = False if random.randint(0, 1) == 0 else True
         if answer_type:
             for i in range(n):
-                eq_var, coeffs, root = self.get_variables_for_equation(complete_root=True)
+                eq_var, coeffs, root = self._get_variables_for_equation(complete_root=True)
                 d = {'eq_var': eq_var,
                      'coeffs': coeffs,
                      'root': root}
                 equation_by_roots.append(d)
-        res = CategoryDQuestions().generate_category_d_questions(equation_by_roots)
+        res = self.category_d.generate_category_d_questions(equation_by_roots)
         return res
 
     def generate_category_c_question(self):
@@ -105,13 +117,12 @@ class GenerateQuestionByCategory:
         return res
 
     def generate_category_a_question(self, category='A'):
-        eq_var, coeffs, root = self.get_variables_for_equation()
-        return CategoryABQuestions().generate_question(eq_var, coeffs, root,
-                                                                 category=category)
+        eq_var, coeffs, root = self._get_variables_for_equation()
+        return self.category_ab.generate_question(eq_var, coeffs, root, category=category)
 
-    def get_variables_for_equation(self, complete_root=False) -> [list, list, int]:
-        root = self.randint(self.config1["root_range"])
-        if random.random() < self.config1["root_square_ratio"] or complete_root:
+    def _get_variables_for_equation(self, complete_root=False) -> [list, list, int]:
+        root = self._randint(self.config["root_range"])
+        if random.random() < self.config["root_square_ratio"] or complete_root:
             root **= 2
         coeffs = self._generate_coeffs()
         eq_var = [f'{coeffs[i]} sqrt({root})' for i in range(len(coeffs))]
@@ -119,19 +130,19 @@ class GenerateQuestionByCategory:
 
     def _generate_coeffs(self) -> list:
         coeffs = [
-            (-1 if random.random() < self.config1["neg_coefficient_ration"] else 1)
-            * self.randint(self.config1["coefficient_range"])
-            for _ in range(self.randint(self.config1["n_roots_range"]))
+            (-1 if random.random() < self.config["neg_coefficient_ration"] else 1)
+            * self._randint(self.config["coefficient_range"])
+            for _ in range(self._randint(self.config["n_roots_range"]))
         ]
         return coeffs
 
     def _generate_roots(self) -> list:
-        roots = [self.randint(self.config1["root_range"])
-                 for _ in range(self.randint(self.config1["n_roots_range"]))]
+        roots = [self._randint(self.config["root_range"])
+                 for _ in range(self._randint(self.config["n_roots_range"]))]
         eq_var = [f'sqrt({root})' for root in roots]
         return roots, eq_var
 
-    def randint(self, ranges: [int, int]) -> int:
+    def _randint(self, ranges: [int, int]) -> int:
         random_no = random.randint(ranges[0], ranges[1])
         return random_no
 
@@ -175,7 +186,7 @@ class GenerateQuestionByCategory:
         return ques, answer, wrong_str
 
     def generate_wrong_value(self, wrong: list) -> str:
-        root = self.randint((1, len(wrong)-1))
+        root = self._randint((1, len(wrong) - 1))
         wrong_str = ''
         random.shuffle(wrong)
         for i in range(len(wrong)):

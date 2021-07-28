@@ -9,6 +9,7 @@ CSV_HEADERS_FROM_INPUT = [
 ]
 
 CSV_HEADERS = [
+        "category",
         "capital",
         "subcapital",
         "title",

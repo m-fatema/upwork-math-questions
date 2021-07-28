@@ -16,7 +16,6 @@ class CategoryQRSTQuestions():
         question += f' = ___ m'
         res = {'question': question,
                'correct': ';'.join([str(a) for a in ans])}
-        print(f'qqq res: {res}')
         return res
 
     def generate_category_r_question(self) -> dict:
@@ -26,7 +25,6 @@ class CategoryQRSTQuestions():
             correct.append(f'x=sqrt({sqr})|{root}')
         res = {'question': '',
                'correct': ';'.join([str(a) for a in correct])}
-        print(f'rrr res: {res}')
         return res
 
     def generate_category_s_question(self) -> dict:
@@ -36,19 +34,17 @@ class CategoryQRSTQuestions():
         res = {'question': 'Wie lautet das Ergebnis für diese Quadratwurzel?',
                'correct': correct,
                'wrong_1': ans}
-        print(f's res: {res}')
         return res
 
     def generate_category_t_question(self) -> dict:
         root, sqr = self._generate_sqr_root()
         correct = f'sqrt({sqr})=___'
         ans = f'{root};'
-        correct +=f';sqrt({sqr/100})=___'
-        ans += f';{root/10}'
+        correct += f';sqrt({sqr/100})=___'
+        ans += f'{root/10}'
         res = {'question': '',
                'correct': correct,
                'wrong_1': ans}
-        print(f'ttt res: {res}')
         return res
 
     def _generate_sqr_root(self) -> [int, int]:
