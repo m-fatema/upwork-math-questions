@@ -1,6 +1,5 @@
 from read_csv import ReadQuestionCSV
 from generate_question_by_category import GenerateQuestionByCategory
-import random
 from config import CSV_HEADERS, CSV_HEADERS_FROM_INPUT
 import pandas as pd
 
@@ -29,7 +28,8 @@ class GenerateDynamicQuestions:
                 if res:
                     res.update({'category': category})
                     for header in self.csv_in_headers:
-                        res.update({header: row[header]})
+                        if header not in res:
+                            res.update({header: row[header]})
                     output.append(res)
                 else:
                     output_no_res.add(category)
@@ -41,6 +41,7 @@ class GenerateDynamicQuestions:
     def _get_unique_categories(self) -> list():
         category_list = list(set(self.input_df['category'].to_list()))
         category_list.sort()
+        # category_list.pop('X')
         return category_list
 
     def _re_order_datafrema_columns(self, out_df: pd.DataFrame) -> pd.DataFrame:
@@ -82,24 +83,3 @@ if __name__ == "__main__":
     GenerateDynamicQuestions(no_of_questions,
                              "reelle-zahlen-2.csv",
                              "output.csv").generate_questions()
-
-
-    # def randint(self, ranges: [int, int]) -> int:
-    #     random_no = random.randint(ranges[0], ranges[1])
-    #     return random_no
-    #
-    # def generate_question_sequence(self, max_question_count: int):
-    #     while len(self.question_no_set) <= self.no_of_questions:
-    #         q = self.randint((0, max_question_count))
-    #         self.question_no_set.add(q)
-# for i in self.question_no_set:
-        #     row = self.input_df.loc[i]
-        #     category = str(row['category']).lower()
-        #     if category is not 'nan' and category is not 'NaN' and type(category) is not float:
-        #         func = self.get_function_name(category)
-        #         res = func()
-        #         if res:
-        #             for header in self.csv_in_headers:
-        #                 res.update({header: row[header]})
-        #             output.append(res)
-        #         print(f'{i}-->{category}--->{res}')

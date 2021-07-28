@@ -21,14 +21,14 @@ class CategoryQRSTQuestions():
     def generate_category_r_question(self) -> dict:
         correct = list()
         for i in range(5):
-            root, sqr = self._generate_sqr_root()
+            root, sqr = self.generate_sqr_root()
             correct.append(f'x=sqrt({sqr})|{root}')
         res = {'question': '',
                'correct': ';'.join([str(a) for a in correct])}
         return res
 
     def generate_category_s_question(self) -> dict:
-        root, sqr = self._generate_sqr_root()
+        root, sqr = self.generate_sqr_root()
         correct = f'x=sqrt({sqr})'
         ans = f'{root}'
         res = {'question': 'Wie lautet das Ergebnis für diese Quadratwurzel?',
@@ -37,7 +37,7 @@ class CategoryQRSTQuestions():
         return res
 
     def generate_category_t_question(self) -> dict:
-        root, sqr = self._generate_sqr_root()
+        root, sqr = self.generate_sqr_root()
         correct = f'sqrt({sqr})=___'
         ans = f'{root};'
         correct += f';sqrt({sqr/100})=___'
@@ -47,7 +47,7 @@ class CategoryQRSTQuestions():
                'wrong_1': ans}
         return res
 
-    def _generate_sqr_root(self) -> [int, int]:
+    def generate_sqr_root(self) -> [int, int]:
         root = random.randint(2, 20)
         sqr = root ** 2
         return root, sqr

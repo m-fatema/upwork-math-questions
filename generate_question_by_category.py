@@ -24,7 +24,13 @@ class GenerateQuestionByCategory:
         self.category_jlm = CategoryJLMQuestions()
         self.category_nop = CategoryNOPQuestions()
         self.category_qrst = CategoryQRSTQuestions()
-        self.category_uvw = CategoryUVWQuestions()
+        self.category_uvw = CategoryUVWQuestions(self.category_qrst)
+
+    def generate_category_w_question(self) -> dict:
+        return self.category_uvw.generate_category_w_question()
+
+    def generate_category_v_question(self) -> dict:
+        return self.category_uvw.generate_category_v_question()
 
     def generate_category_u_question(self) -> dict:
         return self.category_uvw.generate_category_u_question()
