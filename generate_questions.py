@@ -20,7 +20,6 @@ class GenerateDynamicQuestions:
         output = list()
         output_no_res = set()
         category_list = self._get_unique_categories()
-        # category_list = list('Y')
         for category in category_list:
             row = self.input_df.loc[self.input_df['category'] == category].iloc[0]
             func = self.get_function_name(category.lower())
@@ -36,7 +35,7 @@ class GenerateDynamicQuestions:
                     output_no_res.add(category)
                 # print(f'{category}--->{i}-->{res}')
         sequenced_out_df = self._re_order_datafrema_columns(pd.DataFrame(output))
-        sequenced_out_df.to_csv(self.output_file, index=False, sep=',')
+        sequenced_out_df.to_csv(self.output_file, index=False, sep=';')
         sequenced_out_df.to_excel('output.xlsx')
         print(f'Categories Not found: {output_no_res}')
 

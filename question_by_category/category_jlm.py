@@ -24,14 +24,35 @@ class CategoryJLMQuestions:
         return res
 
     def generate_category_l_question(self) -> dict:
-        roots = list()
-        eq_var = list()
-        for _ in range(2):
-            r = random.randint(1, 15)
-            roots.append(str(r))
-            eq_var.append(f'sqrt({r})')
-        correct = f'sqrt({"/".join(roots)})'
-        wrong_1 = f'{"/".join(eq_var)}'
+        ch = bool(random.getrandbits(1))
+        if ch:
+            res = self._generate_question_l1()
+        else:
+            res = self._generate_question_l2()
+        return res
+
+    def _generate_question_l1(self) -> dict:
+        r = random.randint(1, 15)
+        r2 = r * random.randint(2, 15)
+        # quotient = int(r2 / r)
+        wrong_1 = f'sqrt({r2})/ sqrt({r})'
+        correct = f'sqrt({r2}/{r})'  # = sqrt({quotient})'
+        # if (quotient ** 0.5) % 1 == 0:
+        #     correct += f' = {int(quotient  ** 0.5)}'
+        res = {'question': '',
+               'correct': correct,
+               'wrong_1': wrong_1}
+        return res
+
+    def _generate_question_l2(self) -> dict:
+        r1 = random.randint(2, 15)
+        sqr1 = r1 ** 2
+        r2 = random.randint(1, 15)
+        sqr2 = r2 ** 2
+        correct = f'sqrt({sqr1})/sqrt({sqr2})'  #' = {r1}/{r2}'
+        wrong_1 = f'sqrt({sqr1}/{sqr2})'
+        # if sqr1 % sqr2 == 0:
+        #     correct += f' = {int(sqr1/sqr2)}'
         res = {'question': '',
                'correct': correct,
                'wrong_1': wrong_1}

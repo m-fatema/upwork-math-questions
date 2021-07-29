@@ -5,8 +5,52 @@ from sympy import expand, symbols
 class CategoryYZAAQuestions:
 
     def generate_category_aa_question(self) -> dict:
-        res={}
+        ch = bool(random.getrandbits(1))
+        if ch == 1:
+            res = self._generate_question_aa1()
+        elif ch == 2:
+            res = self._generate_question_aa2()
+        else:
+            res = self._generate_question_aa3()
         return res
+
+    def _generate_question_aa1(self) -> dict:
+        v = random.choice(['x', 'y', 'z', 'a', 'b', 'c'])
+        root = random.randint(2, 20)
+        sqr = root ** 2
+        v1 = f'{sqr}*{v}^2'
+        question = f'sqrt({v1}) = ___*___'
+        correct = f'{root};{v}'
+        res = {'question': question, 'correct': correct}
+        return res
+
+    def _generate_question_aa2(self) -> dict:
+        v = random.choice(['x', 'y', 'z', 'a', 'b', 'c'])
+        root1 = random.randint(2, 20)
+        sqr1 = root1 ** 2
+        root2 = random.randint(2, 20)
+        sqr2 = root2 ** 2
+        v1 = f'{sqr1}*{v}^2'
+        v2 = f'{sqr2}*{v}^2'
+        question = f'sqrt({v1}) + sqrt({v2}) = ___*___ + ___*___ = ___'
+        correct = f'{root1};{v};{root2};{v};{root1+root2}{v}'
+        res = {'question': question, 'correct': correct}
+        return res
+
+    def _generate_question_aa3(self) -> dict:
+        v = random.choice(['x', 'y', 'z', 'a', 'b', 'c'])
+        root1 = random.randint(1, 5)
+        sqr1 = root1 ** 2
+        root2 = random.randint(2, 20)
+        sqr2 = root2 ** 2
+        v1 = f'{sqr1}{v}'
+        v2 = f'{sqr2}{v}'
+        question = f'sqrt({v1})*sqrt({v2}) = sqrt(___*___*___) = sqrt(___*{v}^2) = ___'
+        sqr = sqr1 * sqr2
+        correct = f'{sqr1};{sqr2};{v};{sqr};{int(sqr**0.5)}{v}'
+        res = {'question': question, 'correct': correct}
+        return res
+
 
     def generate_category_z_question(self) -> dict:
         question = list()
@@ -35,7 +79,6 @@ class CategoryYZAAQuestions:
         random.shuffle(answer)
         q = "~".join(question) + "|" + "~".join(answer)
         res = {'question': q, 'correct': correct}
-        print(f'\nres:{res}')
         return res
 
     def _generate_random_data(self) -> [str, str, str, str]:
