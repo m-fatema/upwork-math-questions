@@ -28,6 +28,12 @@ class GenerateQuestionByCategory:
         self.category_uvw = CategoryUVWQuestions(self.category_qrst)
         self.category_yzaa = CategoryYZAAQuestions()
 
+    def generate_category_aa_question(self) -> dict:
+        return self.category_yzaa.generate_category_aa_question()
+
+    def generate_category_z_question(self) -> dict:
+        return self.category_yzaa.generate_category_z_question()
+
     def generate_category_y_question(self) -> dict:
         return self.category_yzaa.generate_category_y_question()
 
