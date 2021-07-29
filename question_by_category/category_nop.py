@@ -52,7 +52,7 @@ class CategoryNOPQuestions:
         correct = '2'
         wrong = list()
         wrong.append('keine')
-        wrong.append('2')
+        wrong.append('1')
         return question, correct, wrong
 
     def _generate_category_n2_question(self):

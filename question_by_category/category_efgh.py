@@ -53,7 +53,6 @@ class CategoryEFGHQuestions:
         question += f' = sqrt(___)/sqrt(___) = ___/___'
         res = {'question': question,
                'correct': correct}
-        print(f'GGGG res: {res}')
         return res
 
     def generate_category_h_question(self, roots: list) -> dict:
