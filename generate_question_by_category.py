@@ -1,7 +1,7 @@
 import random
 from question_by_category.category_ab import CategoryABQuestions
 from question_by_category.category_d import CategoryDQuestions
-from question_by_category.category_efh import CategoryEFHQuestions
+from question_by_category.category_efgh import CategoryEFGHQuestions
 from question_by_category.category_jlm import CategoryJLMQuestions
 from question_by_category.category_nop import CategoryNOPQuestions
 from question_by_category.category_qrst import CategoryQRSTQuestions
@@ -21,7 +21,7 @@ class GenerateQuestionByCategory:
         }
         self.category_ab = CategoryABQuestions()
         self.category_d = CategoryDQuestions()
-        self.category_efh = CategoryEFHQuestions()
+        self.category_efgh = CategoryEFGHQuestions()
         self.category_jlm = CategoryJLMQuestions()
         self.category_nop = CategoryNOPQuestions()
         self.category_qrst = CategoryQRSTQuestions()
@@ -88,17 +88,20 @@ class GenerateQuestionByCategory:
 
     def generate_category_h_question(self):
         roots, _ = self._generate_roots()
-        res = self.category_efh.generate_category_h_question(roots)
+        res = self.category_efgh.generate_category_h_question(roots)
         return res
+
+    def generate_category_g_question(self) -> dict:
+        return self.category_efgh.generate_category_g_question()
 
     def generate_category_f_question(self):
         roots, eq_var = self._generate_roots()
-        res = self.category_efh.generate_category_e_question(roots, eq_var)
+        res = self.category_efgh.generate_category_e_question(roots, eq_var)
         return res
 
     def generate_category_e_question(self):
         roots, eq_var = self._generate_roots()
-        res = self.category_efh.generate_category_e_question(roots, eq_var)
+        res = self.category_efgh.generate_category_e_question(roots, eq_var)
         return res
 
     def generate_category_d_question(self):

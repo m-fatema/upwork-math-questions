@@ -2,7 +2,7 @@ import random
 import numpy
 
 
-class CategoryEFHQuestions:
+class CategoryEFGHQuestions:
     def __init__(self):
         pass
 
@@ -38,6 +38,22 @@ class CategoryEFHQuestions:
         res = {'question': question,
                'correct': correct,
                'wrong_1': wrong_1}
+        return res
+
+    def generate_category_g_question(self) -> dict:
+        roots = list()
+        sqrs = list()
+        for _ in range(2):
+            r = random.randint(1, 15)
+            sqr = r ** 2
+            roots.append(str(r))
+            sqrs.append(f'{sqr}')
+        correct = f'{";".join(sqrs)};{";".join(roots)}'
+        question = f'sqrt({"/".join(sqrs)})'
+        question += f' = sqrt(___)/sqrt(___) = ___/___'
+        res = {'question': question,
+               'correct': correct}
+        print(f'GGGG res: {res}')
         return res
 
     def generate_category_h_question(self, roots: list) -> dict:
