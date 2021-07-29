@@ -33,11 +33,10 @@ class GenerateDynamicQuestions:
                     output.append(res)
                 else:
                     output_no_res.add(category)
-                # print(f'{category}--->{i}-->{res}')
         sequenced_out_df = self._re_order_datafrema_columns(pd.DataFrame(output))
         sequenced_out_df.to_csv(self.output_file, index=False, sep=';')
         sequenced_out_df.to_excel('output.xlsx')
-        print(f'Categories Not found: {output_no_res}')
+        print(f'Questions for Categories not generated: {output_no_res}')
 
     def _get_unique_categories(self) -> list():
         category_list = list(set(self.input_df['category'].to_list()))
