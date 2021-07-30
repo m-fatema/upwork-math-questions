@@ -78,13 +78,6 @@ class GenerateQuestionByCategory:
     def generate_category_l_question(self):
         return self.category_jlm.generate_category_l_question()
 
-    def generate_category_k_question(self):
-        return {'question': 'Welcher Rechenweg sinnvoller ist, entscheidet man am besten, ' +
-                            'indem man sich den Wurzelbruch genau anschaut. ' +
-                            'Kann man die Wurzeln in Zähler und Nenner ',
-                'correct': 'Produkt',
-                'wrong_1': 'Quotienten'}
-
     def generate_category_j_question(self):
         return self.category_jlm.generate_category_j_question()
 

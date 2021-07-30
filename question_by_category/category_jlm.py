@@ -6,21 +6,20 @@ class CategoryJLMQuestions:
         pass
 
     def generate_category_j_question(self) -> dict:
-        val1 = random.randint(3, 15)
-        val2 = val1 * random.randint(2, 10)
-        question = f'sqrt({val1}) + sqrt({val2})'
+        val2 = random.randint(3, 15)
+        val1 = val2 * random.randint(2, 10)
+        question = f'sqrt({val1}) / sqrt({val2})'
         question += f'= sqrt(___/___)'
         question += f'= sqrt(__)'
-        ans = val1/val2
+        ans = int(val1/val2)
         correct = str(val1) + ";" + str(val2) + ";" + str(ans)
         if(ans ** 0.5) % 1 == 0:
             question += f'= __'
-            fin_ans = ans ** 0.5
-            correct += str(fin_ans)
+            fin_ans = int(ans ** 0.5)
+            correct += ";" + str(fin_ans)
 
         res = {'question': question,
                'correct': correct}
-
         return res
 
     def generate_category_l_question(self) -> dict:
