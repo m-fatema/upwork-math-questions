@@ -88,5 +88,4 @@ class CategoryEFGHQuestions:
         correct = [str(r) for r in roots]
         res = {'question': question,
                'correct': ";".join(correct)}
-        print(f'HHH res: {res}')
         return res

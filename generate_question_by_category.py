@@ -123,15 +123,19 @@ class GenerateQuestionByCategory:
 
     def generate_category_b_question(self):
         res = list()
+        questions = list()
         r = self.generate_category_a_question(category='BT')
+        questions.append(r['question'].split(" = ")[0])
         r['question'] = r['question'].replace("___", "? | " + r['correct'])
         res.append(r['question'])
         for i in range(3):
             r = self.generate_category_a_question(category='BF')
+            questions.append(r['question'].split(" = ")[0])
             r['question'] = r['question'].replace("___", " ? | " + r['correct'])
             res.append(r['question'])
         random.shuffle(res)
-        res = {"question": "; ".join(res)}
+        random.shuffle(questions)
+        res = {"question": "; ".join(questions), "correct": "; ".join(res)}
         return res
 
     def generate_category_a_question(self, category='A'):
