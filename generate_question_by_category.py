@@ -156,7 +156,7 @@ class GenerateQuestionByCategory:
 
     def _generate_roots(self) -> list:
         roots = [self._randint(self.config["root_range"])
-                 for _ in range(self._randint(self.config["n_roots_range"]))]
+                 for _ in range(self._randint((2, 3)))]
         eq_var = [f'sqrt({root})' for root in roots]
         return roots, eq_var
 

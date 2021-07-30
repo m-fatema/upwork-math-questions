@@ -57,7 +57,7 @@ class CategoryEFGHQuestions:
 
     def generate_category_h_question(self, roots: list) -> dict:
 
-        index = random.randint(0, len(roots))
+        index = random.randint(0, len(roots)-1)
         first_val = ''
         other_val = list()
         a2 = list()
@@ -88,4 +88,5 @@ class CategoryEFGHQuestions:
         correct = [str(r) for r in roots]
         res = {'question': question,
                'correct': ";".join(correct)}
+        print(f'HHH res: {res}')
         return res
